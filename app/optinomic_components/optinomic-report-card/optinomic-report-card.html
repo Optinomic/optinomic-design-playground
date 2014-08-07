@@ -1,0 +1,101 @@
+<link rel="import" href="/bower_components/core-drawer-panel/core-drawer-panel.html">
+<link rel="import" href="/bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="/bower_components/core-icons/core-icons.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+
+
+
+<polymer-element name="optinomic-report-card" attributes="title, color, page">
+
+    <template>
+        <link rel="stylesheet" href="/styles/h5bp.css"></link>
+        <link rel="stylesheet" href="/styles/components/components.css"></link>
+        <link rel="stylesheet" href="/styles/main.css"></link>
+        <link rel="stylesheet" href="/styles/optinomic.css"></link>
+        <style>
+        #core_card_activated {
+            position: relative;
+            width: 100%;
+            height: auto;
+            top: -24px;
+            left: 0px;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            border-bottom-left-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+            background-color: #e7e9fd;
+        }
+        #core_card_deactivated {
+            position: relative;
+            width: 100%;
+            height: auto;
+            top: -22px;
+            left: 22px;
+            background-color: rgb(255, 255, 255);
+        }
+        #core_toolbar {
+            color: rgb(255, 255, 255);
+            background-color: rgb(79, 125, 201);
+            background-color: #d0d9ff;
+        }
+        #section {
+            padding-right: 5%;
+            background-color: white;
+        }
+        #toolbar {
+            width: 50px !important;
+            background-color: white;
+            text-align: right;
+            margin-top: 0px;
+            margin-right: 48px;
+            color: #5677fc;
+        }
+        .subsection-title {
+            margin-top: -12px !important;
+            margin-bottom: -18px !important;
+            font-size: 0.9em;
+            color: #5677fc;
+        }
+        </style>
+
+
+
+
+        <div horizontal layout start id="core_card_deactivated">
+
+            <div flex eleven>
+                <h2 class="subsection-title">
+                    {{title}}
+                </h2>
+
+                <section id="section">
+
+                    <content></content>
+
+                </section>
+            </div>
+            <div flex one id="toolbar">
+                <paper-icon-button icon="more-vert" id="button_more"></paper-icon-button>
+            </div>
+        </div>
+
+
+
+
+
+    </template>
+    <script>
+    Polymer('optinomic-report-card', {
+
+        domReady: function() {
+
+        },
+
+
+
+    });
+    </script>
+
+</polymer-element>

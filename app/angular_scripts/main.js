@@ -4,8 +4,8 @@ var app = angular.module('optinomic', ['ngRoute']);
 app.config(function($routeProvider) {
 
     $routeProvider.
-    when('/',{templateUrl: 'partial/home/home.html'}).
-	when('/patient/:pid',{templateUrl: 'partial/patients/patients.html'}).
+    when('/',{templateUrl: 'partials/page_patient_details.html'}).
+	when('/patient/:pid',{templateUrl: 'partials/page_patient_details.html'}).
 
     otherwise({redirectTo:'/'});
 

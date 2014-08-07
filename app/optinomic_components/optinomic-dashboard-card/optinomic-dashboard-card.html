@@ -1,0 +1,84 @@
+<link rel="import" href="/bower_components/core-drawer-panel/core-drawer-panel.html">
+<link rel="import" href="/bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="/bower_components/core-icons/core-icons.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+
+
+
+<polymer-element name="optinomic-dashboard-card" attributes="title, color, page">
+
+    <template>
+        <link rel="stylesheet" href="/styles/h5bp.css"></link>
+        <link rel="stylesheet" href="/styles/components/components.css"></link>
+        <link rel="stylesheet" href="/styles/main.css"></link>
+        <link rel="stylesheet" href="/styles/optinomic.css"></link>
+        <style>
+        #core_card {
+            position: relative;
+            width: 100%;
+            height: 384px;
+            top: -24px;
+            left: 0px;
+
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            border-bottom-left-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+            background-color: rgb(255, 255, 255);
+        }
+        #core_header_panel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        #core_toolbar {
+            color: rgb(255, 255, 255);
+            background-color: rgb(79, 125, 201);
+            background-color: {{color}};
+            height: auto;
+        }
+        #section {
+            height: auto;
+            min-height: 235px;
+            padding-left: 5%;
+            padding-right: 5%;
+            background: white;
+        }
+        #spacer_start {
+            height: 204px;
+        }
+        </style>
+        
+        <core-card id="core_card" layout vertical>
+            <core-header-panel mode="seamed" id="core_header_panel">
+                <core-toolbar id="core_toolbar">
+                    <paper-icon-button icon="fullscreen" onclick="select_page('{{page}}');" id="button_back"></paper-icon-button>
+                    <div flex id="div">{{title}}</div>
+                    <paper-icon-button icon="more-vert" id="button_more"></paper-icon-button>
+                </core-toolbar>
+                <section id="section">
+
+                        <content></content>
+
+                </section>
+            </core-header-panel>
+        </core-card>
+    </template>
+    <script>
+    Polymer('optinomic-dashboard-card', {
+
+        domReady: function() {
+
+        },
+
+
+
+    });
+    </script>
+
+</polymer-element>

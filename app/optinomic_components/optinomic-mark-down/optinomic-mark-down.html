@@ -1,0 +1,72 @@
+<!-- 
+
+Loads a md-file and render it.
+
+-->
+
+
+<link href="/bower_components/mark-down/mark-down.html" rel="import">
+<link href="/bower_components/core-ajax/core-ajax.html" rel="import">
+
+<polymer-element name="optinomic-mark-down">
+
+    <template>
+
+        <style>
+        #mark_down_box {
+            margin: auto;
+            overflow-x: hidden;
+        }
+        
+        #mark_down_box > h1 {
+            font-size: 0.8em ;
+            text-align: right;
+            margin-right: 20px;
+            font-weight: lighter;
+            color: blue ! important;
+       }
+
+        #markdown {
+            background-color: silver;
+        }
+        #markdown > h1 {
+            font-size: 25em ! important;
+            color: blue ! important;
+        }
+        </style>
+
+
+        <core-ajax auto id="core_ajax" on-core-response="{{handleResponse}}" url="/docs/test.md" handleAs="text">
+        </core-ajax>
+
+
+        <div id="mark_down_box">
+            <h1 class="gaga">/docs/test.md</h1> 
+            <mark-down text="{{md_text}}">
+            </mark-down>
+        </div>
+
+    </template>
+
+    <script>
+    Polymer('optinomic-mark-down', {
+
+        domReady: function() {
+            //console.log('<optinomic-mark-down> READY');
+            this.md_text = 'Not loaded - Ready fired.';
+        },
+
+
+
+        handleResponse: function() {
+            //console.log('handleResponse');
+
+            //console.log(this.$.core_ajax.response);
+            this.md_text = this.$.core_ajax.response;
+            //console.log('=> ', this.md_text);
+        }
+
+    });
+    </script>
+
+</polymer-element>

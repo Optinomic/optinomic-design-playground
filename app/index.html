@@ -45,8 +45,8 @@ _______________________________________________________________
     <link rel="import" href="bower_components/paper-button/paper-button.html">
 
     <!-- 3. HTML Import to bring in the Optinomic elements. -->
-
-
+    <link rel="import" href="optinomic_components/optinomic-scaffold/optinomic-scaffold.html">
+    <link rel="import" href="optinomic_components/optinomic-page/optinomic-page.html">
 
 
     <!-- build:css styles/components/main.min.css -->
@@ -58,30 +58,13 @@ _______________________________________________________________
 
 <body ng-cloak ng-controller="MainCtrl">
 
+    <optinomic-scaffold>
 
+        <section ng-view="">
+            <!-- content view's here -->
+        </section>
 
-    <!-- site / app content here -->
-    <div class="container">
-        <h1>Optinomic</h1>
-        <div>
-            <h4>WebStarterKit</h4>
-            <div class="code-sample">
-                <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
-                <br>
-                <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
-            </div>
-        </div>
-        <div>
-            <h2>Data
-                <small>Polymer - elements / AngularJS Factory-Data:</small>
-            </h2>
-
-            <div ng-repeat="message in factory_data.messages_array">
-                <paper-button label="{{message.name}}" raisedButton></paper-button>
-            </div>
-        </div>
-    </div>
-
+    </optinomic-scaffold>
 
 
     <!-- Angular Scripts -->

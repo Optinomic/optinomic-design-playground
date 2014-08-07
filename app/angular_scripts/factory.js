@@ -10,6 +10,47 @@ app.factory('app_factory', function() {
 
 
 
+
+        patients: [{
+            "address1": "Haldenstrasse 7",
+            "address2": " ",
+            "age": 35,
+            "birthdate": "1979-01-01T00:00:00.000Z",
+            "birthday": "1979-01-01",
+            "cisPid": 2346323,
+            "city": "Oberrieden",
+            "country": "CH",
+            "email": "beat@ottiger.org",
+            "firstName": "Beat",
+            "fourLetterCode": "BOTO",
+            "gender": "male",
+            "lastName": "Ottiger",
+            "notes": "Just me myself and I",
+            "phoneHome": "043 - 305 78 80",
+            "phoneMobile": "079 - 635 85 84",
+            "title": "Dipl. Psych.",
+            "zipCode": "8942"
+        }, {
+            "address1": "Somewhere",
+            "address2": " ",
+            "age": 45,
+            "birthdate": "1979-01-01T00:00:00.000Z",
+            "birthday": "1979-01-01",
+            "cisPid": 2346323,
+            "city": "Oberrieden",
+            "country": "CH",
+            "email": "beat@ottiger.org",
+            "firstName": "Martina",
+            "fourLetterCode": "MSZI",
+            "gender": "female",
+            "lastName": "Hingis",
+            "notes": "Once I played tennis.",
+            "phoneHome": "043 - 305 78 80",
+            "phoneMobile": "079 - 635 85 84",
+            "title": "",
+            "zipCode": "8942"
+        }],
+
         messages_array: [{
             "datum": "07.07.2014",
             "message": "Ein wunderschöner Tag",
