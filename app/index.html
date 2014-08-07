@@ -1,21 +1,19 @@
+<!doctype html>
+<html ng-app="optinomic">
 <!--
 _______________________________________________________________
 
-Optinomic.com - Design playground
+  Optinomic.com - Design playground
 _______________________________________________________________
 
 -->
-
-
-<!doctype html>
-<html ng-app="optinomic">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Optinomic">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Optinomic</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -38,19 +36,9 @@ _______________________________________________________________
 
 
 
-    <!-- Angular Scripts -->
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-
-    <!-- Optinomic - Angular Scripts -->
-    <script src="/angular_scripts/main.js"></script>
-    <script src="/angular_scripts/factory.js"></script>
-    <script src="/angular_scripts/ctrl_main.js"></script>
-
-
-
     <!-- 1. Load platform.js for polyfill support. -->
     <script src="bower_components/platform/platform.js"></script>
+
 
     <!-- 2. HTML Import to bring in the elements. -->
     <link rel="import" href="bower_components/polymer/polymer.html">
@@ -69,18 +57,41 @@ _______________________________________________________________
 </head>
 
 <body ng-cloak ng-controller="MainCtrl">
-    <!-- Add your site or app content here -->
-    <h1>Optinomic!</h1>
-    <p>Welcome to Optinomic: how to <a href="http://developers.google.com/web/starter-kit">Get Started</a> - check out the <a href="styleguide/index.html">Style Guide</a>.</p>
-
-    <h2>Polymer - elements / AngularJS Factory-Data:</h2>
-
-    <paper-button label="{{message.name}}" raisedButton ng-repeat="message in selectors.messages_array"></paper-button>
 
 
 
+    <!-- site / app content here -->
+    <div class="container">
+        <h1>Optinomic</h1>
+        <div>
+            <h4>WebStarterKit</h4>
+            <div class="code-sample">
+                <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
+                <br>
+                <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
+            </div>
+        </div>
+        <div>
+            <h2>Data
+                <small>Polymer - elements / AngularJS Factory-Data:</small>
+            </h2>
+
+            <div ng-repeat="message in factory_data.messages_array">
+                <paper-button label="{{message.name}}" raisedButton></paper-button>
+            </div>
+        </div>
+    </div>
 
 
+
+    <!-- Angular Scripts -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+
+    <!-- Optinomic - Angular Scripts -->
+    <script src="/angular_scripts/main.js"></script>
+    <script src="/angular_scripts/factory.js"></script>
+    <script src="/angular_scripts/ctrl_main.js"></script>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -101,5 +112,7 @@ _______________________________________________________________
     </script>
     <!-- Built with love using Web Starter Kit -->
 </body>
+
+
 
 </html>
