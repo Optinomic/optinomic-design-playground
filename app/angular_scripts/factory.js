@@ -67,7 +67,15 @@ app.factory('app_factory', function() {
             "datum": "07.08.2014",
             "message": "Love me tender",
             "name": "Elvis Presley"
+        }],
+
+        modules_array: [{
+            "name": "Beck-Depressions-Inventar (BDI-II)"
+        }, {
+            "name": "Stress- und Coping-Inventar (SCI)"
         }]
+
+
 
 
     };

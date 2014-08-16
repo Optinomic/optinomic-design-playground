@@ -70,8 +70,6 @@
             </core-toolbar>
             <section id="section_inner_content" content center-justified>
 
-                <h4>{{title}} | {{page_title}}</h4>
-
                 <content></content>
 
             </section>
@@ -89,21 +87,19 @@
              * @type string
              * @default ''
              */
-            page_title: '',
-            title: ''
+            page_title: ''
         },
+
 
         ready: function() {
-
-            page_title = 'Welcome | Willkommen';
-            console.log('page_title = ', page_title);
+            // Initialize the instance's "list" property to empty array.
+            this.title = this.title || [];
+            console.log('optinomic-page-ready : this.title', this.title);
         },
+
 
         domReady: function() {
             this.animate_me_in();
-
-            page_title = this.title;
-            console.log('page_title = ', page_title);
         },
 
         animate_me_out: function() {

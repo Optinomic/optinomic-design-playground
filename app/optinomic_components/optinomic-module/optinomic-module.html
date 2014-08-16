@@ -1,0 +1,94 @@
+<link rel="import" href="/bower_components/core-icons/core-icons.html">
+<link rel="import" href="/bower_components/core-icons/av-icons.html">
+<link rel="import" href="/bower_components/paper-fab/paper-fab.html">
+
+<polymer-element name="optinomic-module" attributes="module" vertical="" layout="">
+
+    <template>
+
+        <link rel="stylesheet" href="/styles/components/components.css">
+        <style>
+        #content {
+            margin-top: 24px;
+            width: 100%;
+            min-height: 128px;
+            background-color: white;
+        }
+        #bar {
+            margin-top: 24px;
+        }
+        #inner_content, #title {
+            padding: 0px 30px;
+        }
+        .bottom-bar {
+            position: relative;
+            height: 64px;
+            line-height: 64px;
+            padding: 0px 30px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+        .shadow {
+            -moz-box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.156863);
+            -webkit-box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.156863);
+            box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.156863);
+        }
+        .paper_z_1 {
+            z-index:0;
+            box-shadow:0 2px 5px 0 rgba(0, 0, 0, .26);
+        }
+        paper-fab {
+            position: relative;
+            top: -28px;
+            right: 16px;
+            color: white;
+            background-color: rgb(66, 133, 244);
+        }
+        </style>
+
+
+        <div id="content" class="{{ {paper_z_1: selected} | tokenList}}" vertical layout>
+
+            <div flex on-tap="{{ toggleSelected }}" >
+                <div id="inner_content">
+
+                    <div id="title">
+                        <p class="small">{{ module.name }}</p>
+                    </div>
+                    <content></content>
+
+                </div>
+            </div>
+
+            <template if="{{selected}}">
+                <div id="bar" class="shadow bottom-bar" horizontal layout hero-id="punch-bottom" hero>
+                    <div flex>{{ module.name }}</div>
+                    <paper-fab icon="av:play-arrow" id="paper_fab" on-tap="{{ runAction }}" scale-up></paper-fab>
+                </div>
+            </template>
+
+        </div>
+
+    </template>
+
+    <script>
+    Polymer('optinomic-module', {
+        selected: false,
+
+        ready: function() {
+            // Initialize the instance's "list" property to empty array.
+            this.module = this.module || [];
+        },
+
+        toggleSelected: function() {
+            this.selected = !this.selected;
+            console.log('toggleSelected = ', this.selected);
+        },
+
+        runAction: function() {
+            console.log('runAction');
+        }
+    });
+    </script>
+
+</polymer-element>

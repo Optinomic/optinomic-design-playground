@@ -1,10 +1,12 @@
-<optinomic-page title="Herr Ottiger Beat">
+<optinomic-page title="Herr Muster Max">
 
-    <!-- partial: page_patient_details.html -->
-    <div class="container">
-        <h1>Optinomic</h1>
+    <h1>Optinomic: {{factory_data.patients[0].firstName}}</h1>
+
+
+    <optinomic-module ng-repeat="module in factory_data.modules_array" module="{{module}}">
+        <!-- partial: page_patient_details.html -->
         <div>
-            <h4>WebStarterKit - Welcome {{factory_data.patients[0].firstName}} / {{patient_full}}</h4>
+            <h4>WebStarterKit - {{patient_full}}</h4>
             <div class="code-sample">
                 <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
                 <br>
@@ -20,27 +22,8 @@
                 <paper-button label="{{message.name}}" raisedButton></paper-button>
             </div>
         </div>
-    </div>
-    <!-- partial: page_patient_details.html -->
-    <div class="container">
-        <h1>Optinomic</h1>
-        <div>
-            <h4>WebStarterKit - Welcome {{factory_data.patients[0].firstName}} / {{patient_full}}</h4>
-            <div class="code-sample">
-                <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
-                <br>
-                <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
-            </div>
-        </div>
-        <div>
-            <h2>Data
-                <small>Polymer - elements / AngularJS Factory-Data:</small>
-            </h2>
 
-            <div ng-repeat="message in factory_data.messages_array">
-                <paper-button label="{{message.name}}" raisedButton></paper-button>
-            </div>
-        </div>
-    </div>
+    </optinomic-module>
+
 
 </optinomic-page>
