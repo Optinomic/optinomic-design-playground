@@ -1,4 +1,4 @@
-app.controller('MainCtrl', function($scope, $timeout, $location, app_factory) {
+app.controller('MainCtrl', function($scope, $timeout, $window, $location, app_factory) {
 
 
 
