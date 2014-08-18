@@ -1,8 +1,9 @@
 <link rel="import" href="/bower_components/core-icons/core-icons.html">
 <link rel="import" href="/bower_components/core-icons/av-icons.html">
 <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
 
-<polymer-element name="optinomic-module" attributes="module" vertical="" layout="">
+<polymer-element name="optinomic-module" attributes="module pageeditmode" vertical="" layout="">
 
     <template>
 
@@ -10,6 +11,7 @@
         <style>
         #content {
             margin-top: 24px;
+            margin-bottom: 24px;
             width: 100%;
             min-height: 128px;
             background-color: white;
@@ -17,8 +19,32 @@
         #bar {
             margin-top: 24px;
         }
-        #inner_content, #title {
+        #top-bar, #paper_ripple {
+            position: relative;
+            height: 64px;
+            width: 100%;
             padding: 0px 30px;
+        }
+        #content {
+            padding-top: 24px;
+        }
+        #inner_content {
+            padding: 0px 30px;
+        }
+        #title {
+            padding: 10px 30px;
+            margin-top: -24px;
+            color: #283593;
+            line-height: 48px;
+            border-style: solid;
+            border-color: #fafafa white white white;
+            border-width: 1px;
+            background-color: transparent;
+        }
+        #subtitle {
+            padding: 10px 30px;
+            margin-top: -36px;
+            color: black;
         }
         .bottom-bar {
             position: relative;
@@ -29,6 +55,7 @@
             font-size: 18px;
         }
         .shadow {
+            background-color: #fafafa;
             -moz-box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.156863);
             -webkit-box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.156863);
             box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.156863);
@@ -44,45 +71,127 @@
             color: white;
             background-color: rgb(66, 133, 244);
         }
+        #core_card {
+            position: relative;
+            width: 100%;
+            height: 48px;
+            left: 0px;
+            top: 0px;
+            background-color: rgb(255, 255, 255);
+        }
+        #paper_ripple {
+            width: 100%;
+            height: 100%;
+            margin-top: -12px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .spacer {
+            margin-top: 24px;
+        }
         </style>
 
 
-        <div id="content" class="{{ {paper_z_1: selected} | tokenList}}" vertical layout>
 
-            <div flex on-tap="{{ toggleSelected }}" >
+
+        <div id="content" class="{{ {paper_z_1: pageeditmode} | tokenList}}" vertical layout>
+
+
+            <core-card id="core_card" on-tap="{{toggleSelected}}">
+                <paper-ripple id="paper_ripple"></paper-ripple>
+                <div>
+                    <h3 id="title">{{ module.name }}</h3>
+                </div>
+
+            </core-card>
+
+            <div id="subtitle">
+                <p class="editorial-header__excerpt">{{ module.description }} <small>(Edit={{pageeditmode}})</small></p>
+            </div>
+
+            <div flex id="content">
                 <div id="inner_content">
 
-                    <div id="title">
-                        <p class="small">{{ module.name }}</p>
-                    </div>
                     <content></content>
+
+
 
                 </div>
             </div>
 
-            <template if="{{selected}}">
+            <template if="{{pageeditmode}}">
                 <div id="bar" class="shadow bottom-bar" horizontal layout hero-id="punch-bottom" hero>
                     <div flex>{{ module.name }}</div>
                     <paper-fab icon="av:play-arrow" id="paper_fab" on-tap="{{ runAction }}" scale-up></paper-fab>
                 </div>
             </template>
 
+
         </div>
 
     </template>
 
+
+
     <script>
     Polymer('optinomic-module', {
+
+        publish: {
+            pageeditmode: {
+                reflect: true
+            }
+        },
+
         selected: false,
+
+
 
         ready: function() {
             // Initialize the instance's "list" property to empty array.
             this.module = this.module || [];
+            this.pageeditmode = this.pageeditmode || [];
+            //this.my_edit_mode = this.editmode || false;
+
         },
+
+        domReady: function() {
+            console.log('optinomic-module: domReady : pageeditmode = ', this.pageeditmode);
+
+
+            //var pageEdit = document.querySelector('optinomic-page');
+            //pageEdit.addEventListener('toggle-edit-mode', function(e) {
+            //    this.pageeditmode = !e.detail.editmode;
+            //    console.log('optinomic-module: addEventListener - toggle-edit-mode: ', this.pageeditmode);
+            //    
+            //});
+
+        },
+
+        pageeditmodeChanged: function() {
+            console.log('optinomic-module: editmodeChanged editmode = ', this.pageeditmode);
+        },
+
+
+
+        //attributeChanged: function(attrName, oldVal, newVal) {
+        //    //var newVal = this.getAttribute(attrName);
+        //    console.log(attrName, 'optinomic-module - attributeChanged - old: ' + oldVal, 'new:', newVal);
+        //},
+
+
 
         toggleSelected: function() {
             this.selected = !this.selected;
             console.log('toggleSelected = ', this.selected);
+
+            this.pageeditmode = !this.pageeditmode;
+        },
+
+
+        runEditMode: function() {
+            alert('runEdit');
+            console.log('runEdit!!!');
         },
 
         runAction: function() {

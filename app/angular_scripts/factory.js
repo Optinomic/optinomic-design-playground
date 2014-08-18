@@ -2,6 +2,11 @@ app.factory('app_factory', function() {
 
     return {
 
+        // ------------------------------------------
+        // Init
+        // ------------------------------------------
+        edit_mode: false,
+
 
         // ------------------------------------------
         // Firebase
@@ -10,6 +15,9 @@ app.factory('app_factory', function() {
 
 
 
+        // ------------------------------------------
+        // Some Data-Arrays
+        // ------------------------------------------
 
         patients: [{
             "address1": "Haldenstrasse 7",
@@ -70,9 +78,11 @@ app.factory('app_factory', function() {
         }],
 
         modules_array: [{
-            "name": "Beck-Depressions-Inventar (BDI-II)"
+            "name": "Beck-Depressions-Inventar (BDI-II)",
+            "description": "Schweregrad depressiver Symptomatik im klinischen Bereich, 21 Aussagen."
         }, {
-            "name": "Stress- und Coping-Inventar (SCI)"
+            "name": "Stress- und Coping-Inventar (SCI)",
+            "description": "Messung von Stressbelastung, Stresssymptomen und Stressbewältigungs-Strategien (Coping). Stressbelastung, Stresssymptomen und Stressbewältigungs-Strategien"
         }]
 
 

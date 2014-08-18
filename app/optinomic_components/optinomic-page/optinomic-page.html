@@ -1,4 +1,3 @@
-<link rel="import" href="/bower_components/polymer/polymer.html">
 <link rel="import" href="/bower_components/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="/bower_components/core-icon-button/core-icon-button.html">
 <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
@@ -6,12 +5,10 @@
 <link rel="import" href="/bower_components/core-icons/core-icons.html">
 <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/bower_components/core-animation/core-animation.html">
-
-
 <link rel="import" href="/bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
 
 
-<polymer-element name="optinomic-page" attributes="title, color">
+<polymer-element name="optinomic-page" attributes="title color editmode">
 
     <template>
         <link rel="stylesheet" href="/styles/h5bp.css"></link>
@@ -56,15 +53,20 @@
         </style>
 
 
-        <core-scroll-header-panel condenses nodissolve keepcondensedheader headerheight="192" condensedheaderheight="64" id="core_scroll_header_panel" class="paper_z_1">
+        <core-scroll-header-panel condenses nodissolve keepcondensedheader headerheight="192" condensedheaderheight="64" id="core_scroll_header_panel" class="paper_z_1" >
             <core-toolbar id="core_inner_toolbar" class="tall">
                 <paper-icon-button icon="arrow-back" id="button_back" on-tap="{{animate_me_out}}"></paper-icon-button>
                 <div flex></div>
-                <paper-icon-button icon="search" id="button_search"></paper-icon-button>
+                <template if="{{!editmode}}">
+                    <paper-icon-button icon="create" id="button_create" on-tap="{{toggleEditMode}}"></paper-icon-button>
+                </template>
+                <template if="{{editmode}}">
+                    <paper-icon-button icon="done" id="button_create" on-tap="{{toggleEditMode}}"></paper-icon-button>
+                </template>
                 <paper-icon-button icon="more-vert" id="button_more"></paper-icon-button>
                 <div class="middle indent">21.5.1973
-                    <small>|</small> 41
-                    <small>LJ.</small>
+                    <small>&nbsp;|&nbsp;</small>41 
+                    <small>LJ. | Edit = {{editmode}}</small>
                 </div>
                 <div id="headline" class="bottom indent">{{title}}</div>
             </core-toolbar>
@@ -80,25 +82,44 @@
     Polymer('optinomic-page', {
 
         publish: {
-            /**
-             * The label of the button.
-             *
-             * @attribute label
-             * @type string
-             * @default ''
-             */
-            page_title: ''
+            editmode: {
+                reflect: true
+            }
         },
-
 
         ready: function() {
             // Initialize the instance's "list" property to empty array.
             this.title = this.title || [];
-            console.log('optinomic-page-ready : this.title', this.title);
+            this.editmode = this.editmode || [];
+            //console.log('optinomic-page-ready : this.title', this.title);
+        },
+
+
+        //attributeChanged: function(attrName, oldVal, newVal) {
+        //    //var newVal = this.getAttribute(attrName);
+        //    console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+        //},
+
+        titleChanged: function() {
+            console.log('titleChanged');
+        },
+
+        editmodeChanged: function() {
+            console.log('optinomic-page: editmodeChanged editmode = ', this.editmode);
+        },
+
+
+
+        toggleEditMode: function() {
+            this.editmode = !this.editmode;
+            this.fire('toggle-edit-mode', {editmode: !this.editmode});
+
+            console.log('optinomic-page: toggle-edit-mode fired: edit_mode = ', this.editmode);
         },
 
 
         domReady: function() {
+            console.log('optinomic-page: domReady : editmode = ', this.editmode);
             this.animate_me_in();
         },
 

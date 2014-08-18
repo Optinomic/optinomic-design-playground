@@ -1,29 +1,61 @@
-<optinomic-page title="Herr Muster Max">
-
-    <h1>Optinomic: {{factory_data.patients[0].firstName}}</h1>
+<optinomic-page title="{{patient_full}}" editmode="{{edit_mode}}">
 
 
-    <optinomic-module ng-repeat="module in factory_data.modules_array" module="{{module}}">
-        <!-- partial: page_patient_details.html -->
-        <div>
-            <h4>WebStarterKit - {{patient_full}}</h4>
-            <div class="code-sample">
-                <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
-                <br>
-                <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
+    <div class="page_container">
+
+        <div class="g-medium--1 g-medium--last g-wide--2">
+            <h2>Inhaltsverzeichnis:</h2>
+
+            <div class="toc">
+                <p class="toc__title">In this lesson</p>
+                <ol class="toc__list list-anchor" id="toc">
+                    <li ng-repeat="module in factory_data.modules_array">
+                        <a href="#ignore-click">{{ module.name }}</a>
+                    </li>
+                </ol>
             </div>
         </div>
-        <div>
-            <h2>Data
-                <small>Polymer - elements / AngularJS Factory-Data:</small>
-            </h2>
+    </div>
 
-            <div ng-repeat="message in factory_data.messages_array">
-                <paper-button label="{{message.name}}" raisedButton></paper-button>
+
+
+    <div class="g-medium--full g-wide--full">
+
+
+        <optinomic-module module="{{factory_data.modules_array[0]}}" pageeditmode="{{edit_mode}}">
+
+            <img src="/images/placeholder/isk.png">
+            <!-- partial: page_patient_details.html -->
+            <div>
+                <h4>{{patient_full}} - WebStarterKit</h4>
+                <div class="code-sample">
+                    <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
+                    <br>
+                    <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
+                </div>
             </div>
-        </div>
 
-    </optinomic-module>
 
+        </optinomic-module>
+
+
+
+        <optinomic-module ng-repeat="module in factory_data.modules_array" module="{{module}}" pageeditmode="{{edit_mode}}">
+
+
+            <img src="/images/placeholder/isk.png">
+            <!-- partial: page_patient_details.html -->
+            <div>
+                <h4>{{patient_full}} - WebStarterKit</h4>
+                <div class="code-sample">
+                    <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
+                    <br>
+                    <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
+                </div>
+            </div>
+
+
+        </optinomic-module>
+    </div>
 
 </optinomic-page>
