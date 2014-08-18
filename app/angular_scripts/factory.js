@@ -39,14 +39,14 @@ app.factory('app_factory', function() {
             "title": "Dipl. Psych.",
             "zipCode": "8942"
         }, {
-            "address1": "Somewhere",
+            "address1": "Fachstrasse 73a",
             "address2": " ",
             "age": 45,
             "birthdate": "1979-01-01T00:00:00.000Z",
             "birthday": "1979-01-01",
             "cisPid": 2346323,
-            "city": "Oberrieden",
-            "country": "CH",
+            "city": "London",
+            "country": "GB",
             "email": "beat@ottiger.org",
             "firstName": "Martina",
             "fourLetterCode": "MSZI",
@@ -56,7 +56,7 @@ app.factory('app_factory', function() {
             "phoneHome": "043 - 305 78 80",
             "phoneMobile": "079 - 635 85 84",
             "title": "",
-            "zipCode": "8942"
+            "zipCode": "2341"
         }],
 
         messages_array: [{

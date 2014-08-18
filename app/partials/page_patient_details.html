@@ -3,11 +3,37 @@
 
     <div class="page_container">
 
-        <div class="g-medium--1 g-medium--last g-wide--2">
-            <h2>Inhaltsverzeichnis:</h2>
+        <div class="g--half">
+            <p>{{patient_full}}
+                </br>{{patient.address1}}
+                </br>{{patient.country}} - {{patient.zipCode}} {{patient.city}}
+                </br>
+                <small>
+                    {{patient.phoneHome}} | {{patient.phoneMobile}} |
+                    <a href="mailto:{{patient.email}}">{{patient.email}}</a>
+                </small>
+            </p>
+        </div>
+
+        <div class="g--half g--last">
+            <p>
+                </br>
+                </br>Eintritt: 21.5.1973  |  21.Tag
+                </br>
+                <small>
+                    Krankenkasse: Swica | 234.34.12345
+                </small>
+            </p>
+        </div>
+
+
+
+
+        <div class="g--half">
+            <h2>Standortgespräch</h2>
 
             <div class="toc">
-                <p class="toc__title">Aktivierte Module</p>
+                <p class="toc__title">Inhaltsverzeichnis</p>
                 <ol class="toc__list list-anchor" id="toc">
                     <li ng-repeat="module in factory_data.modules_array">
                         <a href="#ignore-click">{{ module.name }}</a>
@@ -15,6 +41,7 @@
                 </ol>
             </div>
         </div>
+
     </div>
 
 

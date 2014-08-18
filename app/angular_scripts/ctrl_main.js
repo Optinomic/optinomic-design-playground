@@ -9,6 +9,7 @@ app.controller('MainCtrl', function($scope, $timeout, $window, $location, app_fa
     $scope.edit_mode = $scope.factory_data.edit_mode;
     console.log('$scope.edit_mode = ', $scope.edit_mode);
 
+    $scope.patient = $scope.factory_data.patients[0];
     $scope.patient_full = 'Herr ' + $scope.factory_data.patients[0].lastName + ' ' + $scope.factory_data.patients[0].firstName;
 
 
@@ -21,7 +22,8 @@ app.controller('MainCtrl', function($scope, $timeout, $window, $location, app_fa
         $scope.edit_mode = !$scope.edit_mode;
         console.log('MainCtrl: toggleEditMode: edit_mode = ', $scope.edit_mode);
 
-        $scope.patient_full = 'Mr. Nielsen Tom';
+        $scope.patient = $scope.factory_data.patients[1];
+        $scope.patient_full = 'Frau Szirnyi Martina';
 
 
         console.log('MainCtrl - location', $location);
