@@ -1,0 +1,101 @@
+
+<link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
+
+
+<polymer-element name="optinomic-title" attributes="header subtitle description">
+
+    <template>
+        <link rel="stylesheet" href="/styles/h5bp.css"></link>
+        <link rel="stylesheet" href="/styles/components/components.css"></link>
+        <link rel="stylesheet" href="/styles/main.css"></link>
+        <style>
+        .page_container {
+            padding: 10px 30px;
+        }
+        #header {
+            border-style: solid;
+            border-color: #fafafa white white white;
+            border-width: 1px;
+        }
+        #subtitle {
+            margin-top: -12px;
+            color: #2a36b1;
+        }
+        #description {
+            margin-top: -48px;
+        }
+
+        paper-toggle-button.blue::shadow paper-radio-button::shadow #ink[checked] {
+            color: #4285f4;
+        }
+        paper-toggle-button.blue::shadow paper-radio-button::shadow #onRadio {
+            background-color: #4285f4;
+        }
+        paper-toggle-button.blue::shadow #toggleBar[checked] {
+            background-color: #4285f4;
+        }
+        </style>
+
+        <div class="page_container">
+
+            <template if="{{header}}">
+                <h3 id="header" class="xlarge">{{ header }}</h3>
+            </template>
+            <template if="{{subtitle}}">
+                <div class="g-medium--2 g-medium--last g-wide--2">
+                    <p id="subtitle" class="medium">
+                        {{ subtitle }}
+                        <template if="{{description}}">&nbsp;&nbsp;
+                            <paper-toggle-button class="blue" checked="{{show_more}}"></paper-toggle-button>
+                        </template>
+                    </p>
+                </div>
+            </template>
+
+            <template if="{{show_more}}">
+                <div class="g-medium--2 g-medium--last g-wide--3">
+                    <p class="base">
+                        {{ description }}
+                    </p>
+                </div>
+            </template>
+        </div>
+
+    </template>
+
+    <script>
+    Polymer('optinomic-title', {
+
+        ready: function() {
+            // Initialize the instance's "list" property to empty array.
+            this.show_more = this.show_more || false;
+
+            this.header = this.header || [];
+            this.subtitle = this.subtitle || [];
+            this.description = this.description || [];
+
+            this.mytitle = this.mytitle || [];
+            this.mytitle_small = this.mytitle || [];
+            this.mysubtitle = this.mysubtitle || [];
+            this.mysubtitle = this.mysubtitle || [];
+        },
+
+        domReady: function() {
+            console.log('optinomic-title - ready: ', this.header);
+
+            if (this.description != null) {
+                this.show_toggle === true;
+            }
+
+        },
+
+        toggleDescription: function() {
+            this.show_more = !this.show_more;
+        },
+
+
+    });
+    </script>
+
+
+</polymer-element>

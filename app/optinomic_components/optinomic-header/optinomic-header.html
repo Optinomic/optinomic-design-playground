@@ -1,0 +1,97 @@
+<polymer-element name="optinomic-header" attributes="header patient">
+
+    <template>
+        <link rel="stylesheet" href="/styles/h5bp.css"></link>
+        <link rel="stylesheet" href="/styles/components/components.css"></link>
+        <link rel="stylesheet" href="/styles/main.css"></link>
+        <style>
+        .current_page_container {
+            padding: 10px 30px;
+            margin-top: 48px;
+        }
+        #div_mytitle {
+            color: red;
+        }
+        #mytitle_small {
+            font-size: 0.5em;
+        }
+        #mysubtitle {
+            margin-top: -34px;
+        }
+        </style>
+
+        <div class="current_page_container">
+            <template id="div_mytitle" if="{{header}}">
+                <h2 id="mytitle">
+                    {{ mytitle }}
+                    <span id="mytitle_small">{{mytitle_small}}</span>
+                </h2>
+            </template>
+            <template if="{{patient.address1}}">
+                <p id="mysubtitle" class="editorial-header__excerpt">&raquo; {{mysubtitle}}</p>
+            </template>
+        </div>
+
+    </template>
+
+    <script>
+    Polymer('optinomic-header', {
+
+        ready: function() {
+            // Initialize the instance's "list" property to empty array.
+            this.header = this.header || [];
+            this.patient = this.patient || [];
+            this.mytitle = this.mytitle || [];
+            this.mytitle_small = this.mytitle || [];
+            this.mysubtitle = this.mysubtitle || [];
+        },
+
+        domReady: function() {
+            console.log('optinomic-header - ready: ', this.header);
+
+
+            this.mytitle = '';
+            this.mytitle_small = '';
+            this.mysubtitle = '';
+
+
+            if (this.patient != null) {
+
+                var ansprache = "";
+
+                if (this.patient.gender === 'male') {
+                    ansprache = ansprache + 'Herr '
+                } else {
+                    ansprache = ansprache + 'Frau '
+                }
+                ansprache = ansprache + this.patient.lastName + ' ' + this.patient.firstName;
+
+                this.mytitle_small = '(' + this.patient.birthday + ')';
+
+
+                this.mytitle = this.header + ': ' + ansprache;
+
+
+                this.mysubtitle = this.mysubtitle + this.patient.address1 + ', ';
+                this.mysubtitle = this.mysubtitle + this.patient.country + ' - ' + this.patient.zipCode + ' ' + this.patient.city;
+
+                var phone = "";
+                if (this.patient.phoneHome != null) {
+                    phone = ' | ' + this.patient.phoneHome;
+                }
+                this.mysubtitle = this.mysubtitle + phone;
+
+                var phone = "";
+                if (this.patient.phoneMobile != null) {
+                    phone = ' | ' + this.patient.phoneMobile;
+                }
+                this.mysubtitle = this.mysubtitle + phone;
+
+            }
+        },
+
+
+    });
+    </script>
+
+</polymer-element>
