@@ -1,5 +1,5 @@
-
 <link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="/bower_components/core-tooltip/core-tooltip.html">
 
 
 <polymer-element name="optinomic-title" attributes="header subtitle description">
@@ -12,11 +12,6 @@
         .page_container {
             padding: 10px 30px;
         }
-        #header {
-            border-style: solid;
-            border-color: #fafafa white white white;
-            border-width: 1px;
-        }
         #subtitle {
             margin-top: -12px;
             color: #2a36b1;
@@ -24,7 +19,6 @@
         #description {
             margin-top: -48px;
         }
-
         paper-toggle-button.blue::shadow paper-radio-button::shadow #ink[checked] {
             color: #4285f4;
         }
@@ -38,27 +32,34 @@
 
         <div class="page_container">
 
+
             <template if="{{header}}">
-                <h3 id="header" class="xlarge">{{ header }}</h3>
+                <h3>{{ header }}</h3>
             </template>
+
             <template if="{{subtitle}}">
-                <div class="g-medium--2 g-medium--last g-wide--2">
+                <div>
                     <p id="subtitle" class="medium">
                         {{ subtitle }}
                         <template if="{{description}}">&nbsp;&nbsp;
-                            <paper-toggle-button class="blue" checked="{{show_more}}"></paper-toggle-button>
+
+                            <core-tooltip large label="Details" position="top">
+                                <paper-toggle-button class="blue" checked="{{show_more}}"></paper-toggle-button>
+                            </core-tooltip>
+
                         </template>
                     </p>
                 </div>
             </template>
 
             <template if="{{show_more}}">
-                <div class="g-medium--2 g-medium--last g-wide--3">
+                <div>
                     <p class="base">
                         {{ description }}
                     </p>
                 </div>
             </template>
+
         </div>
 
     </template>

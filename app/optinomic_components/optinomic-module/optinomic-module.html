@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/core-icons/core-icons.html">
+<link rel="import" href="/bower_components/core-icons/social-icons.html">
 <link rel="import" href="/bower_components/core-icons/av-icons.html">
 <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
@@ -87,6 +88,16 @@
             top: 0px;
             left: 0px;
         }
+        #header {
+            border-style: solid;
+            border-color: #fafafa white white white;
+            border-width: 1px;
+        }
+        #info {
+            margin-top: 12px;
+            padding: 0px 30px;
+            color: #9e9e9e;
+        }
         .spacer {
             margin-top: 24px;
         }
@@ -97,9 +108,20 @@
 
         <div id="content" class="{{ {paper_z_1: pageeditmode} | tokenList}}" vertical layout>
 
-            <optinomic-title header="{{ module.name }}" subtitle="{{ module.description }}" description="{{ module.full_description }}"></optinomic-title>
-
-
+            <div id="header">
+                <div class="g-wide--3 g-medium--half">
+                    <optinomic-title header="{{ module.name }}" subtitle="{{ module.description }}" description="{{ module.full_description }}"></optinomic-title>
+                </div>
+                <div id="info" class="g-wide--1 g-wide--last g-medium--half g--last">
+                    <p>
+                        <core-icon icon="social:group"></core-icon>&nbsp;
+                        {{ module.responsibility }}
+                        </br>
+                        <core-icon icon="schedule"></core-icon>&nbsp;
+                        {{ module.schedule }}
+                    </p>
+                </div>
+            </div>
 
             <div flex id="content">
                 <div id="inner_content">

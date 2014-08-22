@@ -1,31 +1,15 @@
 <optinomic-page title="{{patient_full}}" editmode="{{edit_mode}}">
 
 
-    <optinomic-header header="Arztbericht" patient="{{patient}}"></optinomic-header>
-    <div class="page_container">
-        <div class="page_container g--half">
-            <optinomic-module module="Aktiviere / Deaktiver Module" pageeditmode="{{edit_mode}}">
 
-                <div class="toc">
-                    <p class="toc__title">Inhaltsverzeichnis</p>
-                    <ol class="toc__list list-anchor" id="toc">
-                        <li ng-repeat="module in factory_data.modules_array">
-                            <a href="#ignore-click">{{ module.name }}</a>
-                        </li>
-                    </ol>
-                </div>
-            </optinomic-module>
-        </div>
 
-    </div>
-    
+
     <div class="page_container">
         <div class="g--half">
             <p class="base">
                 {{patient_full}}
                 </br>{{patient.address1}}
                 </br>{{patient.country}} - {{patient.zipCode}} {{patient.city}}
-                </br>
             </p>
             <p class="small">
                 {{patient.phoneHome}} | {{patient.phoneMobile}} |
@@ -37,7 +21,6 @@
             <p class="base">
                 </br>
                 </br>Eintritt: 21.5.1973 | 21.Tag
-                </br>
             </p>
             <p class="small">
                 Krankenkasse: Swica | 234.34.12345
@@ -50,12 +33,20 @@
 
 
 
-
-
-
-
     <div class="g-medium--full g-wide--full">
 
+        <optinomic-header header="Arztbericht" patient="{{patient}}"></optinomic-header>
+        <div class="page_container g--half g--last">
+
+                <div class="toc">
+                    <p class="toc__title">Inhaltsverzeichnis</p>
+                    <ol class="toc__list list-anchor" id="toc">
+                        <li ng-repeat="module in factory_data.modules_array">
+                            <a href="#ignore-click">{{ module.name }}</a>
+                        </li>
+                    </ol>
+                </div>
+        </div>
 
         <optinomic-module module="{{factory_data.modules_array[0]}}" pageeditmode="{{edit_mode}}">
 
