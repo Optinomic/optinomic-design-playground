@@ -2,7 +2,7 @@
 <link rel="import" href="/bower_components/core-icons/social-icons.html">
 <link rel="import" href="/bower_components/core-icons/av-icons.html">
 <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="/bower_components/core-animation/core-animation.html">
 
 <polymer-element name="optinomic-module" attributes="module pageeditmode">
 
@@ -10,7 +10,7 @@
 
         <link rel="stylesheet" href="/styles/components/components.css">
         <style>
-        #content {
+        #full_content {
             margin-top: 24px;
             margin-bottom: 24px;
             width: 100%;
@@ -31,6 +31,7 @@
         }
         #inner_content {
             padding: 0px 30px;
+            min-height: 360px;
         }
         #title {
             padding: 10px 30px;
@@ -101,34 +102,47 @@
         .spacer {
             margin-top: 24px;
         }
+        #core_toolbar {
+            right: 0px;
+            left: 0px;
+            color: rgb(0, 0, 0);
+            fill: rgb(255, 255, 255);
+            top: 0px;
+            position: relative;
+            background-color: rgb(255, 255, 255);
+        }
         </style>
 
 
 
 
-        <div id="content" class="{{ {paper_z_1: pageeditmode} | tokenList}}" vertical layout>
+        <div id="full_content" class="{{ {paper_z_1: pageeditmode} | tokenList}}" vertical layout>
 
             <div id="header">
                 <div class="g-wide--3 g-medium--half">
                     <optinomic-title header="{{ module.name }}" subtitle="{{ module.description }}" description="{{ module.full_description }}"></optinomic-title>
                 </div>
-                <div id="info" class="g-wide--1 g-wide--last g-medium--half g--last">
-                    <p>
-                        <core-icon icon="social:group"></core-icon>&nbsp;
-                        {{ module.responsibility }}
-                        </br>
-                        <core-icon icon="schedule"></core-icon>&nbsp;
-                        {{ module.schedule }}
-                    </p>
-                </div>
+
+                <template if="{{visible_front}}">
+                    <div id="info" class="g-wide--1 g-wide--last g-medium--half g--last">
+                        <p>
+                            <core-icon icon="social:group"></core-icon>&nbsp; {{ module.responsibility }}
+                            </br>
+                            <core-icon icon="schedule"></core-icon>&nbsp; {{ module.schedule }}
+                        </p>
+                    </div>
+                </template>
             </div>
 
             <div flex id="content">
                 <div id="inner_content">
 
-                    <content></content>
-
-
+                    <template if="{{visible_front}}">
+                        <content id="front_page" select="front"></content>
+                    </template>
+                    <template if="{{!visible_front}}">
+                        <content id="back_page" select="back"></content>
+                    </template>
 
                 </div>
             </div>
@@ -164,13 +178,13 @@
             // Initialize the instance's "list" property to empty array.
             this.module = this.module || [];
             this.pageeditmode = this.pageeditmode || [];
+            this.visible_front = true;
             //this.my_edit_mode = this.editmode || false;
 
         },
 
         domReady: function() {
             console.log('optinomic-module: domReady : pageeditmode = ', this.pageeditmode);
-
 
             //var pageEdit = document.querySelector('optinomic-page');
             //pageEdit.addEventListener('toggle-edit-mode', function(e) {
@@ -207,8 +221,62 @@
             console.log('runEdit!!!');
         },
 
+
+        animate_front_back: function(direction) {
+
+            //onclick="javascript:history.back();"
+            console.log('animate_front_back');
+
+
+            var animation_toggle_out = new CoreAnimation();
+            animation_toggle_out.duration = 350;
+            animation_toggle_out.fill = 'forwards';
+            animation_toggle_out.keyframes = [{
+                opacity: 1,
+                width: '100%'
+            }, {
+                opacity: 0,
+                width: '0%'
+            }];
+            animation_toggle_out.target = this.$.content;
+
+
+            var animation_toggle_in = new CoreAnimation();
+            animation_toggle_in.duration = 350;
+            animation_toggle_in.fill = 'forwards';
+            animation_toggle_in.keyframes = [{
+                opacity: 0,
+                width: '0%'
+            }, {
+                opacity: 1,
+                width: '100%'
+            }];
+            animation_toggle_in.target = this.$.content;
+
+
+            if (direction === 'in') {
+                animation_toggle_in.play();
+            } else {
+                animation_toggle_out.play();
+            }
+        },
+
+
         runAction: function() {
-            console.log('runAction');
+            //console.log('runAction');
+
+            //Get heigth of card
+            var h = this.$.full_content.offsetHeight;
+            //console.log('optinomic-module: domReady : height front_page = ', h);
+
+            // Toggle (front / back)
+            this.animate_front_back('out');
+            this.visible_front = !this.visible_front;
+            this.animate_front_back('in');
+            //this.animate_front_back();
+
+            //set height of card.
+            this.$.full_content.style.minHeight = h + 'px';
         }
     });
     </script>

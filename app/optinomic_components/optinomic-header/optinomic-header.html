@@ -18,6 +18,9 @@
         #mysubtitle {
             margin-top: -34px;
         }
+        core-icon {
+            color: #3B78E7;
+        }
         </style>
 
         <div class="current_page_container">
@@ -28,7 +31,8 @@
                 </h2>
             </template>
             <template if="{{patient.address1}}">
-                <p id="mysubtitle" class="editorial-header__excerpt">&raquo; {{mysubtitle}}</p>
+                <p id="mysubtitle" class="editorial-header__excerpt">
+                    <core-icon icon="chevron-right"></core-icon>{{mysubtitle}}</p>
             </template>
         </div>
 
@@ -79,13 +83,21 @@
                 if (this.patient.phoneHome != null) {
                     phone = ' | ' + this.patient.phoneHome;
                 }
+                if (phone != "") {
+                    if (this.patient.phoneMobile != null) {
+                        phone = phone + ', ' + this.patient.phoneMobile;
+                    } else {
+                        phone = ' | ' + this.patient.phoneMobile;
+                    }
+                }
+
                 this.mysubtitle = this.mysubtitle + phone;
 
-                var phone = "";
-                if (this.patient.phoneMobile != null) {
-                    phone = ' | ' + this.patient.phoneMobile;
+
+
+                if (this.patient.phoneHome != null) {
+                    this.mysubtitle = this.mysubtitle + ' | ' + this.patient.email;
                 }
-                this.mysubtitle = this.mysubtitle + phone;
 
             }
         },

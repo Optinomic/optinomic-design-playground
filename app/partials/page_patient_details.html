@@ -11,10 +11,6 @@
                 </br>{{patient.address1}}
                 </br>{{patient.country}} - {{patient.zipCode}} {{patient.city}}
             </p>
-            <p class="small">
-                {{patient.phoneHome}} | {{patient.phoneMobile}} |
-                <a href="mailto:{{patient.email}}">{{patient.email}}</a>
-                </small>
         </div>
 
         <div class="g--half g--last">
@@ -22,9 +18,6 @@
                 </br>
                 </br>Eintritt: 21.5.1973 | 21.Tag
             </p>
-            <p class="small">
-                Krankenkasse: Swica | 234.34.12345
-                </small>
         </div>
     </div>
 
@@ -36,51 +29,53 @@
     <div class="g-medium--full g-wide--full">
 
         <optinomic-header header="Arztbericht" patient="{{patient}}"></optinomic-header>
-        <div class="page_container g--half g--last">
 
-                <div class="toc">
-                    <p class="toc__title">Inhaltsverzeichnis</p>
-                    <ol class="toc__list list-anchor" id="toc">
-                        <li ng-repeat="module in factory_data.modules_array">
-                            <a href="#ignore-click">{{ module.name }}</a>
-                        </li>
-                    </ol>
-                </div>
+        <div class="g--half g--last">
+
+            <div class="page_container toc">
+                <p class="toc__title">Inhaltsverzeichnis</p>
+                <ol class="toc__list list-anchor" id="toc">
+                    <li ng-repeat="module in factory_data.modules_array">
+                        <a href="#ignore-click">{{ module.name }}</a>
+                    </li>
+                </ol>
+            </div>
         </div>
 
+
         <optinomic-module module="{{factory_data.modules_array[0]}}" pageeditmode="{{edit_mode}}">
+            <front>
+                <h4>Info: {{patient_full}}</h4>
 
-            <img src="/images/placeholder/isk.png">
-            <!-- partial: page_patient_details.html -->
-            <div>
-                <h4>{{patient_full}} - WebStarterKit</h4>
-                <div class="code-sample">
-                    <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
-                    <br>
-                    <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
-                </div>
-            </div>
+                <img src="/images/placeholder/isk.png">
 
+            </front>
+            <back>
+                <h4>Rückseite</h4>
+
+            </back>
 
         </optinomic-module>
 
 
 
         <optinomic-module ng-repeat="module in factory_data.modules_array" module="{{module}}" pageeditmode="{{edit_mode}}">
-
-
-            <img src="/images/placeholder/isk.png">
-            <!-- partial: page_patient_details.html -->
-            <div>
-                <h4>{{patient_full}} - WebStarterKit</h4>
-                <div class="code-sample">
-                    <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
-                    <br>
-                    <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
+            <front>
+                <img src="/images/placeholder/isk.png">
+                <!-- partial: page_patient_details.html -->
+                <div>
+                    <h4>{{patient_full}} - WebStarterKit</h4>
+                    <div class="code-sample">
+                        <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
+                        <br>
+                        <a href="styleguide/index.html" class="cta--primary">Style Guide</a>
+                    </div>
                 </div>
-            </div>
+            </front>
+            <back>
+                <h4>Rückseite</h4>
 
-
+            </back>
         </optinomic-module>
     </div>
 

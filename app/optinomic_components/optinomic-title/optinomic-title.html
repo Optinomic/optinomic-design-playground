@@ -14,10 +14,16 @@
         }
         #subtitle {
             margin-top: -12px;
-            color: #2a36b1;
         }
         #description {
             margin-top: -48px;
+        }
+        #div_description {
+            padding: 10px 30px;
+            margin-top: -28px;
+        }
+        #main_header{
+            color: black;
         }
         paper-toggle-button.blue::shadow paper-radio-button::shadow #ink[checked] {
             color: #4285f4;
@@ -28,18 +34,24 @@
         paper-toggle-button.blue::shadow #toggleBar[checked] {
             background-color: #4285f4;
         }
+        core-icon {
+            color: #3B78E7;
+            margin-top: -6px;
+        }
+
         </style>
 
         <div class="page_container">
 
 
             <template if="{{header}}">
-                <h3>{{ header }}</h3>
+                <h3 id="main_header">{{ header }}</h3>
             </template>
 
             <template if="{{subtitle}}">
                 <div>
                     <p id="subtitle" class="medium">
+                        <core-icon icon="chevron-right"></core-icon> 
                         {{ subtitle }}
                         <template if="{{description}}">&nbsp;&nbsp;
 
@@ -53,8 +65,9 @@
             </template>
 
             <template if="{{show_more}}">
-                <div>
+                <div id="div_description">
                     <p class="base">
+                        <core-icon icon="expand-more"></core-icon>
                         {{ description }}
                     </p>
                 </div>
