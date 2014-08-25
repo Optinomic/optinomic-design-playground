@@ -3,6 +3,8 @@
 <link rel="import" href="/bower_components/core-icons/av-icons.html">
 <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="/bower_components/core-animation/core-animation.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tab.html">
 
 <polymer-element name="optinomic-module" attributes="module pageeditmode">
 
@@ -28,6 +30,9 @@
         }
         #content {
             padding-top: 12px;
+            left: 0px;
+            top: 0px;
+            position: relative;
         }
         #inner_content {
             padding: 0px 30px;
@@ -111,6 +116,25 @@
             position: relative;
             background-color: rgb(255, 255, 255);
         }
+        #paper_tabs {
+            width: 100%;
+            color: black;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 2px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            background-color: rgb(255, 255, 255);
+        }
+        #back_page {
+            top: 50px;
+            position: relative;
+        }
+        paper-tabs::shadow #selectionBar {
+            background-color: #ff4081;
+        }
+        paper-tab::shadow #ink {
+            color: #ff4081;
+        }
         </style>
 
 
@@ -136,12 +160,34 @@
 
             <div flex id="content">
                 <div id="inner_content">
-
                     <template if="{{visible_front}}">
-                        <content id="front_page" select="front"></content>
+                        <content select="front"></content>
                     </template>
+
                     <template if="{{!visible_front}}">
-                        <content id="back_page" select="back"></content>
+                        <paper-tabs id="paper_tabs" selected="{{back_tab_selected}}">
+                            <paper-tab id="tab_1" on-click="{{change_tab(0)}}">Übersicht</paper-tab>
+                            <paper-tab id="tab_2" on-click="{{change_tab(1)}}">Verantwortlichkeit</paper-tab>
+                            <paper-tab id="tab_3" on-click="{{change_tab(2)}}">Zeitplan</paper-tab>
+                            <paper-tab id="tab_4" on-click="{{change_tab(3)}}">Erinnerungen</paper-tab>
+                        </paper-tabs>
+                        <div class="spacer">&nbsp;</div>
+
+                        <template if="{{back_tab_selected === 0}}">
+                            <h3>{{back_tab_selected}} = tab_1</h3>
+                        </template>
+                        <template if="{{back_tab_selected === 1}}">
+                            <h3>{{back_tab_selected}} = tab_2</h3>
+                        </template>
+                        <template if="{{back_tab_selected === 2}}">
+                            <h3>{{back_tab_selected}} = tab_3</h3>
+                        </template>
+                        <template if="{{back_tab_selected === 3}}">
+                            <h3>{{back_tab_selected}} = tab_4</h3>
+                        </template>
+
+
+                        <content select="back"></content>
                     </template>
 
                 </div>
@@ -179,6 +225,7 @@
             this.module = this.module || [];
             this.pageeditmode = this.pageeditmode || [];
             this.visible_front = true;
+            this.back_tab_selected = 0;
             //this.my_edit_mode = this.editmode || false;
 
         },
@@ -221,35 +268,44 @@
             console.log('runEdit!!!');
         },
 
+        change_tab: function(my_selected) {
+            alert('change_tab: ', my_selected);
+            this.back_tab_selected = my_selected;
+        },
 
         animate_front_back: function(direction) {
-
-            //onclick="javascript:history.back();"
-            console.log('animate_front_back');
-
+            //console.log('animate_front_back');
 
             var animation_toggle_out = new CoreAnimation();
             animation_toggle_out.duration = 350;
+            animation_toggle_out.easing = 'ease-out';
             animation_toggle_out.fill = 'forwards';
             animation_toggle_out.keyframes = [{
-                opacity: 1,
-                width: '100%'
+                left: '0px',
+                opacity: 1
             }, {
-                opacity: 0,
-                width: '0%'
+                left: '20px',
+                opacity: 0.3
+            }, {
+                left: '1000px',
+                opacity: 0
             }];
             animation_toggle_out.target = this.$.content;
 
 
             var animation_toggle_in = new CoreAnimation();
             animation_toggle_in.duration = 350;
+            animation_toggle_in.easing = 'ease-in';
             animation_toggle_in.fill = 'forwards';
             animation_toggle_in.keyframes = [{
-                opacity: 0,
-                width: '0%'
+                left: '1000px',
+                opacity: 0
             }, {
-                opacity: 1,
-                width: '100%'
+                left: '20px',
+                opacity: 0.3
+            }, {
+                left: '0px',
+                opacity: 1
             }];
             animation_toggle_in.target = this.$.content;
 
