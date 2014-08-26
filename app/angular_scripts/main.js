@@ -1,4 +1,4 @@
-var app = angular.module('optinomic', ['ngRoute']);
+var app = angular.module('optinomic', ['ngRoute', 'duScroll']);
 
 
 app.config(function($routeProvider) {
