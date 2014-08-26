@@ -9,7 +9,7 @@
 <link rel="import" href="/bower_components/core-tooltip/core-tooltip.html">
 <link rel="import" href="/bower_components/glue-share/glue-share.html">
 
-<polymer-element name="optinomic-module" attributes="module pageeditmode">
+<polymer-element name="optinomic-module" attributes="module">
 
     <template>
 
@@ -237,11 +237,6 @@
     <script>
     Polymer('optinomic-module', {
 
-        publish: {
-            pageeditmode: {
-                reflect: true
-            }
-        },
 
         glue_editmode: false,
 
@@ -256,21 +251,8 @@
         },
 
         domReady: function() {
-            console.log('optinomic-module: domReady : pageeditmode = ', this.pageeditmode);
-
-            //var pageEdit = document.querySelector('optinomic-page');
-            //pageEdit.addEventListener('toggle-edit-mode', function(e) {
-            //    this.pageeditmode = !e.detail.editmode;
-            //    console.log('optinomic-module: addEventListener - toggle-edit-mode: ', this.pageeditmode);
-            //    
-            //});
 
         },
-
-        pageeditmodeChanged: function() {
-            console.log('optinomic-module: editmodeChanged editmode = ', this.pageeditmode);
-        },
-
 
 
         //attributeChanged: function(attrName, oldVal, newVal) {
