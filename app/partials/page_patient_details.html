@@ -15,12 +15,11 @@
 
         <div class="g--half g--last">
             <p class="base">
-                </br>
+                </br><a href="#raptors">Read more about raptors!</a> <a href="#my_end">Jump</a> <a data-scroll href="#my_end">Scroll to</a>
                 </br>Eintritt: 21.5.1973 | 21.Tag
             </p>
         </div>
     </div>
-
 
 
 
@@ -36,35 +35,20 @@
                 <p class="toc__title">Inhaltsverzeichnis</p>
                 <ol class="toc__list list-anchor" id="toc">
                     <li ng-repeat="module in factory_data.modules_array">
-                        <a href="#ignore-click">{{ module.name }}</a>
+                        <a data-scroll href="#scroll_to_{{ module.id }}">{{ module.name }}</a>
                     </li>
                 </ol>
             </div>
         </div>
 
 
-        <optinomic-module module="{{factory_data.modules_array[0]}}" pageeditmode="{{edit_mode}}">
-            <front>
-                <h4>Info: {{patient_full}}</h4>
 
-                <img src="/images/placeholder/isk.png">
-
-            </front>
-            <back>
-                <h4>Rückseite</h4>
-
-            </back>
-
-        </optinomic-module>
-
-
-
-        <optinomic-module ng-repeat="module in factory_data.modules_array" module="{{module}}" pageeditmode="{{edit_mode}}">
+        <optinomic-module ng-repeat="module in factory_data.modules_array" id="scroll_to_{{ module.id }}" module="{{module}}" pageeditmode="{{edit_mode}}">
             <front>
                 <img src="/images/placeholder/isk.png">
                 <!-- partial: page_patient_details.html -->
                 <div>
-                    <h4>{{patient_full}} - WebStarterKit</h4>
+                    <h4>{{patient_full}} - WebStarterKit for Module: {{ module.id }}</h4>
                     <div class="code-sample">
                         <a href="http://developers.google.com/web/starter-kit" class="cta--primary">Get Started</a>
                         <br>
@@ -77,6 +61,10 @@
 
             </back>
         </optinomic-module>
+
+
+        <span id="my_end">Bazinga!</span>
+        <a name="raptors">Raptors</a>
     </div>
 
 </optinomic-page>
