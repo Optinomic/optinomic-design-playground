@@ -15,11 +15,14 @@
 
         <div class="g--half g--last">
             <p class="base">
-                </br><a href="#">Link</a> <a href="javascript:smoothScroll.animateScroll( null, '#bazinga' )">JS Link</a>
+                </br>
                 </br>Eintritt: 21.5.1973 | 21.Tag
             </p>
         </div>
     </div>
+
+
+
 
 
 
@@ -39,6 +42,20 @@
             </div>
         </div>
 
+
+        <optinomic-module module="{{factory_data.modules_array[0]}}" pageeditmode="{{edit_mode}}">
+            <front>
+                <h4>Info: {{patient_full}}</h4>
+
+                <img src="/images/placeholder/isk.png">
+
+            </front>
+            <back>
+                <h4>Rückseite</h4>
+
+            </back>
+
+        </optinomic-module>
 
 
 
@@ -60,9 +77,6 @@
 
             </back>
         </optinomic-module>
-
-
-        <span id="bazinga">Bazinga!</span>
     </div>
 
 </optinomic-page>
