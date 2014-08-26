@@ -33,8 +33,8 @@ app.controller('MainCtrl', function($scope, $timeout, $window, $location, app_fa
         var current_url = $location.$$absUrl;
 
 
-        window.open("/#/refresh", "_self");
-        window.open(current_url, "_self");
+        //window.open("/#/refresh", "_self");
+        //window.open(current_url, "_self");
     };
 
     $scope.getEditMode = function() {

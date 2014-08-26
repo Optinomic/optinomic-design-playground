@@ -6,6 +6,7 @@
 <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/bower_components/core-animation/core-animation.html">
 <link rel="import" href="/bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
+<link rel="import" href="/bower_components/glue-share/glue-share.html">
 
 
 <polymer-element name="optinomic-page" attributes="title color editmode">
@@ -52,8 +53,9 @@
         }
         </style>
 
+        <glue-share name='editmode' context='page_edit' value="{{editmode}}" publisher></glue-share>
 
-        <core-scroll-header-panel condenses nodissolve keepcondensedheader headerheight="192" condensedheaderheight="64" id="core_scroll_header_panel" class="paper_z_1" >
+        <core-scroll-header-panel condenses nodissolve keepcondensedheader headerheight="192" condensedheaderheight="64" id="core_scroll_header_panel" class="paper_z_1">
             <core-toolbar id="core_inner_toolbar" class="tall">
                 <paper-icon-button icon="arrow-back" id="button_back" on-tap="{{animate_me_out}}"></paper-icon-button>
                 <div flex></div>
@@ -65,7 +67,7 @@
                 </template>
                 <paper-icon-button icon="more-vert" id="button_more"></paper-icon-button>
                 <div class="middle indent">21.5.1973
-                    <small>&nbsp;|&nbsp;</small>41 
+                    <small>&nbsp;|&nbsp;</small>41
                     <small>LJ. | Edit = {{editmode}}</small>
                 </div>
                 <div id="headline" class="bottom indent">{{title}}</div>
@@ -112,7 +114,9 @@
 
         toggleEditMode: function() {
             this.editmode = !this.editmode;
-            this.fire('toggle-edit-mode', {editmode: !this.editmode});
+            this.fire('toggle-edit-mode', {
+                editmode: !this.editmode
+            });
 
             console.log('optinomic-page: toggle-edit-mode fired: edit_mode = ', this.editmode);
         },

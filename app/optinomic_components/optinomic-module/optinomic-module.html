@@ -1,10 +1,13 @@
 <link rel="import" href="/bower_components/core-icons/core-icons.html">
 <link rel="import" href="/bower_components/core-icons/social-icons.html">
+<link rel="import" href="/bower_components/core-icons/communication-icons.html">
 <link rel="import" href="/bower_components/core-icons/av-icons.html">
 <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="/bower_components/core-animation/core-animation.html">
 <link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="/bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="/bower_components/core-tooltip/core-tooltip.html">
+<link rel="import" href="/bower_components/glue-share/glue-share.html">
 
 <polymer-element name="optinomic-module" attributes="module pageeditmode">
 
@@ -138,9 +141,10 @@
         </style>
 
 
+        <glue-share name='editmode' context='page_edit' value="{{glue_editmode}}" subscriber></glue-share>
 
 
-        <div id="full_content" class="{{ {paper_z_1: pageeditmode} | tokenList}}" vertical layout>
+        <div id="full_content" class="{{ {paper_z_1: glue_editmode} | tokenList}}" vertical layout>
 
             <div id="header">
                 <div class="g-wide--3 g-medium--half">
@@ -166,24 +170,47 @@
 
                     <template if="{{!visible_front}}">
                         <paper-tabs id="paper_tabs" selected="{{back_tab_selected}}">
-                            <paper-tab id="tab_1" on-click="{{change_tab(0)}}">Übersicht</paper-tab>
-                            <paper-tab id="tab_2" on-click="{{change_tab(1)}}">Verantwortlichkeit</paper-tab>
-                            <paper-tab id="tab_3" on-click="{{change_tab(2)}}">Zeitplan</paper-tab>
-                            <paper-tab id="tab_4" on-click="{{change_tab(3)}}">Erinnerungen</paper-tab>
+                            <paper-tab id="tab_1">
+                                <core-icon icon="home"></core-icon>
+                                Übersicht
+                            </paper-tab>
+
+                            <paper-tab id="tab_2">
+                                <core-icon icon="social:group"></core-icon>
+                                Verantwortlichkeit
+                            </paper-tab>
+
+                            <paper-tab id="tab_3">
+                                <core-icon icon="schedule"></core-icon>
+                                Zeitplan
+                            </paper-tab>
+
+                            <paper-tab id="tab_4">
+                                <core-icon icon="communication:comment"></core-icon>
+                                Erinnerungen
+                            </paper-tab>
                         </paper-tabs>
                         <div class="spacer">&nbsp;</div>
 
                         <template if="{{back_tab_selected === 0}}">
-                            <h3>{{back_tab_selected}} = tab_1</h3>
+                            <h3>
+                                <core-icon icon="home"></core-icon>&nbsp; Übersicht
+                            </h3>
                         </template>
                         <template if="{{back_tab_selected === 1}}">
-                            <h3>{{back_tab_selected}} = tab_2</h3>
+                            <h3>
+                                <core-icon icon="social:group"></core-icon>&nbsp; Verantwortlichkeit
+                            </h3>
                         </template>
                         <template if="{{back_tab_selected === 2}}">
-                            <h3>{{back_tab_selected}} = tab_3</h3>
+                            <h3>
+                                <core-icon icon="schedule"></core-icon>&nbsp; Zeitplan
+                            </h3>
                         </template>
                         <template if="{{back_tab_selected === 3}}">
-                            <h3>{{back_tab_selected}} = tab_4</h3>
+                            <h3>
+                                <core-icon icon="communication:comment"></core-icon>&nbsp; Erinnerungen
+                            </h3>
                         </template>
 
 
@@ -193,7 +220,7 @@
                 </div>
             </div>
 
-            <template if="{{pageeditmode}}">
+            <template if="{{glue_editmode}}">
                 <div id="bar" class="shadow bottom-bar" horizontal layout hero-id="punch-bottom" hero>
                     <div flex>{{ module.name }}</div>
                     <paper-fab icon="av:play-arrow" id="paper_fab" on-tap="{{ runAction }}" scale-up></paper-fab>
@@ -216,18 +243,16 @@
             }
         },
 
-        selected: false,
+        glue_editmode: false,
 
 
 
         ready: function() {
             // Initialize the instance's "list" property to empty array.
             this.module = this.module || [];
-            this.pageeditmode = this.pageeditmode || [];
             this.visible_front = true;
             this.back_tab_selected = 0;
             //this.my_edit_mode = this.editmode || false;
-
         },
 
         domReady: function() {
@@ -254,24 +279,6 @@
         //},
 
 
-
-        toggleSelected: function() {
-            this.selected = !this.selected;
-            console.log('toggleSelected = ', this.selected);
-
-            this.pageeditmode = !this.pageeditmode;
-        },
-
-
-        runEditMode: function() {
-            alert('runEdit');
-            console.log('runEdit!!!');
-        },
-
-        change_tab: function(my_selected) {
-            alert('change_tab: ', my_selected);
-            this.back_tab_selected = my_selected;
-        },
 
         animate_front_back: function(direction) {
             //console.log('animate_front_back');
