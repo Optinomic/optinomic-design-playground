@@ -1,4 +1,4 @@
-app.controller('MainCtrl', function($scope, $timeout, $window, $location, $anchorScroll, app_factory) {
+app.controller('MainCtrl', function($scope, $timeout, $window, $location, app_factory) {
 
 
 
@@ -17,15 +17,6 @@ app.controller('MainCtrl', function($scope, $timeout, $window, $location, $ancho
     //---------------------------------------------------------
     // FUNCTIONS
     //---------------------------------------------------------
-
-
-    $scope.scrollTo = function(id) {
-        var old = $location.hash();
-        $location.hash(id);
-        $anchorScroll();
-        //reset to old to keep any additional routing logic from kicking in
-        $location.hash(old);
-    };
 
     $scope.toggleEditMode = function() {
         $scope.edit_mode = !$scope.edit_mode;

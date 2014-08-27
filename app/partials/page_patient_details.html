@@ -15,7 +15,7 @@
 
         <div class="g--half g--last">
             <p class="base">
-                </br><a href="#" scroll-to="page_end">Click me!</a><a href="#chapter4">chapter4</a> <a ng-href="\#page_end">Go to inpage section</a> <a href="" ng-click="scrollTo('page_end')">Scroll to #foo</a>
+                </br>
                 </br>Eintritt: 21.5.1973 | 21.Tag
             </p>
         </div>
@@ -36,7 +36,7 @@
                 <p class="toc__title">Inhaltsverzeichnis</p>
                 <ol class="toc__list list-anchor" id="toc">
                     <li ng-repeat="module in factory_data.modules_array">
-                        <a a-href="#{{ module.id }}" ng-href="##{{ module.id }}">{{ module.name }}</a>
+                        <a href="#ignore-click">{{ module.name }}</a>
                     </li>
                 </ol>
             </div>
@@ -57,11 +57,7 @@
 
         </optinomic-module>
 
-        <div id="page_end">
-            <h3>Bazinga</h3>
-        </div>
 
-        <a name="chapter4"></a> 
 
         <optinomic-module ng-repeat="module in factory_data.modules_array" module="{{module}}" pageeditmode="{{edit_mode}}">
             <front>
@@ -81,9 +77,6 @@
 
             </back>
         </optinomic-module>
-
-
-
     </div>
 
 </optinomic-page>
