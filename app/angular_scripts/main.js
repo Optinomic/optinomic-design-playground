@@ -1,4 +1,4 @@
-var app = angular.module('optinomic', ['ngRoute']);
+var app = angular.module('optinomic', ['ngRoute', 'smoothScroll']);
 
 
 app.config(function($routeProvider) {
