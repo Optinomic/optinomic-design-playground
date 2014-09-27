@@ -3,7 +3,7 @@ optinomic-design-playground
 ===========================
 
 
-Just a playground for testing designs.
+Just a playground for testing designs with http://www.polymer-project.org/.
 
 
 
